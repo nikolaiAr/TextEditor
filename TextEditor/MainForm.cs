@@ -18,6 +18,7 @@ namespace TextEditor
         event EventHandler FileOpenClick;
         event EventHandler FileSaveClick;
         event EventHandler ContentChanged;
+
     }
     public partial class MainForm : Form, IMainForm
     {
@@ -29,6 +30,7 @@ namespace TextEditor
             textBox.TextChanged += TextBox_TextChanged;
             butSelectFile.Click += ButSelectFile_Click;
             numFont.ValueChanged += numFont_ValueChanged;
+            
         }
 
 
@@ -92,6 +94,22 @@ namespace TextEditor
         private void numFont_ValueChanged(object sender, EventArgs e)
         {
             textBox.Font = new Font("Calibri", (float)numFont.Value);
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.WindowsShutDown) return;
+
+            switch (MessageBox.Show(this, "Вы уверены, что хотите закрыть редактор?", "Closing", MessageBoxButtons.YesNo))
+            {
+                case DialogResult.No:
+                    e.Cancel = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
