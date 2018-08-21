@@ -21,6 +21,31 @@ namespace TextEditor
             _view.ContentChanged += _view_ContentChanged;
             _view.FileOpenClick += _view_FileOpenClick;
             _view.FileSaveClick += _view_FileSaveClick;
+            _view.FileCreateClick += _view_FileCreateClick;
+        }
+
+        private void _view_FileCreateClick(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = _view.FilePath;
+                if ("" != filePath)
+                {
+                    //string content = _view.Content;
+                    _manager.CreateContent( filePath,_view.Content);
+                    _messageService.ShowMessage("Создан новый файл");
+                }
+                else
+                {
+                    _messageService.ShowExclamation("Введите полное название файла");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                _messageService.ShowError (ex.Message);
+            }
+            
         }
 
         private void _view_FileSaveClick(object sender, EventArgs e)

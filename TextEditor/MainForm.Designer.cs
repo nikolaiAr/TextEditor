@@ -39,6 +39,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblSymbolCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.butCreateFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numFont)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -104,7 +105,7 @@
             0,
             0});
             this.numFont.Name = "numFont";
-            this.numFont.Size = new System.Drawing.Size(120, 20);
+            this.numFont.Size = new System.Drawing.Size(42, 20);
             this.numFont.TabIndex = 5;
             this.numFont.Value = new decimal(new int[] {
             11,
@@ -121,13 +122,13 @@
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox.Size = new System.Drawing.Size(841, 275);
+            this.textBox.Size = new System.Drawing.Size(841, 348);
             this.textBox.TabIndex = 6;
             // 
             // butSaveFile
             // 
             this.butSaveFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.butSaveFile.Location = new System.Drawing.Point(757, 394);
+            this.butSaveFile.Location = new System.Drawing.Point(757, 456);
             this.butSaveFile.Name = "butSaveFile";
             this.butSaveFile.Size = new System.Drawing.Size(84, 23);
             this.butSaveFile.TabIndex = 7;
@@ -139,7 +140,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.lblSymbolCount});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(887, 22);
             this.statusStrip1.TabIndex = 8;
@@ -156,11 +157,22 @@
             this.lblSymbolCount.Name = "lblSymbolCount";
             this.lblSymbolCount.Size = new System.Drawing.Size(0, 17);
             // 
+            // butCreateFile
+            // 
+            this.butCreateFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.butCreateFile.Location = new System.Drawing.Point(641, 53);
+            this.butCreateFile.Name = "butCreateFile";
+            this.butCreateFile.Size = new System.Drawing.Size(200, 23);
+            this.butCreateFile.TabIndex = 9;
+            this.butCreateFile.Text = "Создать новый файл";
+            this.butCreateFile.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 450);
+            this.ClientSize = new System.Drawing.Size(887, 512);
+            this.Controls.Add(this.butCreateFile);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.butSaveFile);
             this.Controls.Add(this.textBox);
@@ -170,6 +182,7 @@
             this.Controls.Add(this.butSelectFile);
             this.Controls.Add(this.filePath);
             this.Controls.Add(this.label1);
+            this.MinimumSize = new System.Drawing.Size(530, 300);
             this.Name = "MainForm";
             this.Text = "Текстовый редактор";
             ((System.ComponentModel.ISupportInitialize)(this.numFont)).EndInit();
@@ -193,6 +206,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblSymbolCount;
+        private System.Windows.Forms.Button butCreateFile;
     }
 }
 

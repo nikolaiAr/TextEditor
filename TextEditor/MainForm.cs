@@ -17,6 +17,7 @@ namespace TextEditor
         void SetSymbolCount(int count);
         event EventHandler FileOpenClick;
         event EventHandler FileSaveClick;
+        event EventHandler FileCreateClick;
         event EventHandler ContentChanged;
 
     }
@@ -30,11 +31,16 @@ namespace TextEditor
             textBox.TextChanged += TextBox_TextChanged;
             butSelectFile.Click += ButSelectFile_Click;
             numFont.ValueChanged += numFont_ValueChanged;
-            
+            butCreateFile.Click += ButCreateFile_Click;
         }
 
-
         #region Проброс событий
+        private void ButCreateFile_Click(object sender, EventArgs e)
+        {
+            if (FileCreateClick != null)
+                FileCreateClick(this, EventArgs.Empty);
+        }
+
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
             if (ContentChanged != null)
@@ -73,6 +79,7 @@ namespace TextEditor
 
         public event EventHandler FileOpenClick;
         public event EventHandler FileSaveClick;
+        public event EventHandler FileCreateClick;
         public event EventHandler ContentChanged;
         #endregion
 
@@ -96,6 +103,7 @@ namespace TextEditor
             textBox.Font = new Font("Calibri", (float)numFont.Value);
         }
 
+        //переопределение кнопки закрытия
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);

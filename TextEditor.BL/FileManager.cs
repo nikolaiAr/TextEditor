@@ -10,6 +10,8 @@ namespace TextEditor.BL
 {
     public interface IFileManager
     {
+        void CreateContent(string filePath, string content);
+        void CreateContent(string filePath, string content, Encoding encoding);
         string GetContent(string filePath);
         string GetContent(string filePath, Encoding encoding);
         void SaveContent(string content, string filePath);
@@ -20,6 +22,18 @@ namespace TextEditor.BL
     public class FileManager:IFileManager
     {
         private readonly Encoding _defEnc = Encoding.GetEncoding(1251);
+        //перегрузки для передачи кодировки
+        
+        public void CreateContent(string filePath, string content) //создать
+        {
+            CreateContent(filePath, content, _defEnc);
+        }
+        
+        public void CreateContent(string filePath, string content, Encoding encoding) //создать
+        {
+            File.WriteAllText(filePath, content);
+            //SaveContent(content, filePath);
+        }
 
         public string GetContent(string filePath) //открыть
         {
@@ -33,7 +47,7 @@ namespace TextEditor.BL
             return content;
         }
 
-        public void SaveContent(string content, string filePath)
+        public void SaveContent(string content, string filePath)//сохранить
         {
             SaveContent(content, filePath, _defEnc);
         }
