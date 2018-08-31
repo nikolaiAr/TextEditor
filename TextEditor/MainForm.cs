@@ -34,12 +34,12 @@ namespace TextEditor
             itemSelectFile.Click += ItemSelectFile_Click;
         }
 
+        #region Проброс событий
         private void ItemSelectFile_Click(object sender, EventArgs e)
         {
             SelectFile();
         }
 
-        #region Проброс событий
         private void ItemCreateFile_Click(object sender, EventArgs e)
         {
             if (FileCreateClick != null)

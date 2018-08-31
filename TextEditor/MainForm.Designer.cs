@@ -40,8 +40,17 @@
             this.toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemCreateFile = new System.Windows.Forms.ToolStripMenuItem();
             this.itemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.itemSelectFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemSearch = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemPasteDataTime = new System.Windows.Forms.ToolStripMenuItem();
+            this.textSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numFont)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -133,7 +142,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem});
+            this.toolStripMenuItem,
+            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(887, 24);
@@ -154,32 +164,96 @@
             // itemCreateFile
             // 
             this.itemCreateFile.Name = "itemCreateFile";
-            this.itemCreateFile.Size = new System.Drawing.Size(180, 22);
+            this.itemCreateFile.Size = new System.Drawing.Size(132, 22);
             this.itemCreateFile.Text = "Создать";
             // 
             // itemOpenFile
             // 
             this.itemOpenFile.Name = "itemOpenFile";
-            this.itemOpenFile.Size = new System.Drawing.Size(180, 22);
+            this.itemOpenFile.Size = new System.Drawing.Size(132, 22);
             this.itemOpenFile.Text = "Открыть";
-            // 
-            // itemSaveFile
-            // 
-            this.itemSaveFile.Name = "itemSaveFile";
-            this.itemSaveFile.Size = new System.Drawing.Size(180, 22);
-            this.itemSaveFile.Text = "Сохранить";
             // 
             // itemSelectFile
             // 
             this.itemSelectFile.Name = "itemSelectFile";
-            this.itemSelectFile.Size = new System.Drawing.Size(180, 22);
+            this.itemSelectFile.Size = new System.Drawing.Size(132, 22);
             this.itemSelectFile.Text = "Выбрать";
+            // 
+            // itemSaveFile
+            // 
+            this.itemSaveFile.Name = "itemSaveFile";
+            this.itemSaveFile.Size = new System.Drawing.Size(132, 22);
+            this.itemSaveFile.Text = "Сохранить";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemCut,
+            this.itemCopy,
+            this.itemPaste,
+            this.itemDelete,
+            this.itemSearch,
+            this.itemSelectAll,
+            this.itemPasteDataTime});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
+            this.toolStripMenuItem1.Text = "Правка";
+            // 
+            // itemCut
+            // 
+            this.itemCut.Name = "itemCut";
+            this.itemCut.Size = new System.Drawing.Size(148, 22);
+            this.itemCut.Text = "Вырезать";
+            // 
+            // itemCopy
+            // 
+            this.itemCopy.Name = "itemCopy";
+            this.itemCopy.Size = new System.Drawing.Size(148, 22);
+            this.itemCopy.Text = "Копировать";
+            // 
+            // itemPaste
+            // 
+            this.itemPaste.Name = "itemPaste";
+            this.itemPaste.Size = new System.Drawing.Size(148, 22);
+            this.itemPaste.Text = "Вставить";
+            // 
+            // itemDelete
+            // 
+            this.itemDelete.Name = "itemDelete";
+            this.itemDelete.Size = new System.Drawing.Size(148, 22);
+            this.itemDelete.Text = "Удалить";
+            // 
+            // itemSearch
+            // 
+            this.itemSearch.Name = "itemSearch";
+            this.itemSearch.Size = new System.Drawing.Size(148, 22);
+            this.itemSearch.Text = "Найти";
+            // 
+            // itemSelectAll
+            // 
+            this.itemSelectAll.Name = "itemSelectAll";
+            this.itemSelectAll.Size = new System.Drawing.Size(148, 22);
+            this.itemSelectAll.Text = "Выделить все";
+            // 
+            // itemPasteDataTime
+            // 
+            this.itemPasteDataTime.Name = "itemPasteDataTime";
+            this.itemPasteDataTime.Size = new System.Drawing.Size(148, 22);
+            this.itemPasteDataTime.Text = "Вставить дату";
+            // 
+            // textSearch
+            // 
+            this.textSearch.Location = new System.Drawing.Point(731, 24);
+            this.textSearch.Name = "textSearch";
+            this.textSearch.Size = new System.Drawing.Size(156, 20);
+            this.textSearch.TabIndex = 11;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 512);
+            this.Controls.Add(this.textSearch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filePath);
             this.Controls.Add(this.statusStrip1);
@@ -217,6 +291,15 @@
         private System.Windows.Forms.ToolStripMenuItem itemOpenFile;
         private System.Windows.Forms.ToolStripMenuItem itemSaveFile;
         private System.Windows.Forms.ToolStripMenuItem itemSelectFile;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem itemCut;
+        private System.Windows.Forms.ToolStripMenuItem itemCopy;
+        private System.Windows.Forms.ToolStripMenuItem itemPaste;
+        private System.Windows.Forms.ToolStripMenuItem itemDelete;
+        private System.Windows.Forms.ToolStripMenuItem itemSearch;
+        private System.Windows.Forms.ToolStripMenuItem itemSelectAll;
+        private System.Windows.Forms.ToolStripMenuItem itemPasteDataTime;
+        private System.Windows.Forms.TextBox textSearch;
     }
 }
 
