@@ -26,20 +26,43 @@ namespace TextEditor
         public MainForm()
         {
             InitializeComponent();
-            butOpenFile.Click += ButOpenFile_Click;
-            butSaveFile.Click += ButSaveFile_Click;
             textBox.TextChanged += TextBox_TextChanged;
-            butSelectFile.Click += ButSelectFile_Click;
             numFont.ValueChanged += numFont_ValueChanged;
-            butCreateFile.Click += ButCreateFile_Click;
+            itemOpenFile.Click += ItemOpenFile_Click;
+            itemSaveFile.Click += ItemSaveFile_Click;
+            itemCreateFile.Click += ItemCreateFile_Click;
+            itemSelectFile.Click += ItemSelectFile_Click;
+        }
+
+        private void ItemSelectFile_Click(object sender, EventArgs e)
+        {
+            SelectFile();
         }
 
         #region Проброс событий
-        private void ButCreateFile_Click(object sender, EventArgs e)
+        private void ItemCreateFile_Click(object sender, EventArgs e)
         {
             if (FileCreateClick != null)
                 FileCreateClick(this, EventArgs.Empty);
         }
+
+        private void ItemSaveFile_Click(object sender, EventArgs e)
+        {
+            if (FileSaveClick != null)
+                FileSaveClick(this, EventArgs.Empty);
+        }
+
+        private void ItemOpenFile_Click(object sender, EventArgs e)
+        {
+            if (""==FilePath)
+            {
+                SelectFile();
+            }
+            if (FileOpenClick != null)
+                FileOpenClick(this, EventArgs.Empty);
+        }
+
+        
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
@@ -47,17 +70,6 @@ namespace TextEditor
                 ContentChanged(this, EventArgs.Empty);
         }
 
-        private void ButSaveFile_Click(object sender, EventArgs e)
-        {
-            if (FileSaveClick != null)
-                FileSaveClick(this, EventArgs.Empty);
-        }
-
-        private void ButOpenFile_Click(object sender, EventArgs e)
-        {
-            if (FileOpenClick != null)
-                FileOpenClick(this, EventArgs.Empty);
-        }
         #endregion
 
         #region IMainForm
@@ -84,7 +96,7 @@ namespace TextEditor
         #endregion
 
         //обработчик выбора файла
-        private void ButSelectFile_Click(object sender, EventArgs e)
+        private void SelectFile()
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "Текстовые файлы|*.txt|Все файлы|*.*";
