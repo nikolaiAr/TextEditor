@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TextEditor.BL;
 
 namespace TextEditor
@@ -22,6 +23,12 @@ namespace TextEditor
             _view.FileOpenClick += _view_FileOpenClick;
             _view.FileSaveClick += _view_FileSaveClick;
             _view.FileCreateClick += _view_FileCreateClick;
+            _view.PasteDate += _view_PasteDate;
+        }
+
+        private void _view_PasteDate(object sender, EventArgs e)
+        {
+            _view.Content += "  " + _manager.PasteDateTime();
         }
 
         private void _view_FileCreateClick(object sender, EventArgs e)

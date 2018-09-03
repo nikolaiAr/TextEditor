@@ -1,5 +1,7 @@
-﻿//using System;
-//using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 //using System.Linq;
 //using System.Text;
 //using System.Threading.Tasks;
@@ -18,6 +20,7 @@ namespace TextEditor.BL
         void SaveContent(string content, string filePath, Encoding encoding);
         bool IsExist(string filePath);
         int GetSymbolCount(string content);
+        string PasteDateTime();
     }
     public class FileManager:IFileManager
     {
@@ -67,5 +70,12 @@ namespace TextEditor.BL
             int count = content.Length;
             return count;
         }
+
+        public string PasteDateTime ()   //вставить текущую дату и время
+        {
+            DateTime dateTime = DateTime.Now;
+            return dateTime.ToString();
+        }
+
     }
 }
