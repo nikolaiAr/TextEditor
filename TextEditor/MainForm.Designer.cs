@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.filePath = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.numFont = new System.Windows.Forms.NumericUpDown();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblSymbolCount = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemCreateFile = new System.Windows.Forms.ToolStripMenuItem();
             this.itemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,9 +55,25 @@
             this.textBox = new System.Windows.Forms.RichTextBox();
             this.comboFont = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contMenuCut = new System.Windows.Forms.ToolStripMenuItem();
+            this.contMenuCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.contMenuPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.contMenuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.contMenuSearch = new System.Windows.Forms.ToolStripMenuItem();
+            this.contMenuSeleactAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.contMenuPasteDateTime = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.cntxtMenuSearch = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cntxtMenuSearchHide = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblCountIdent = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lebelCountIdent = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.numFont)).BeginInit();
-            this.statusStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.statusStrip.SuspendLayout();
+            this.menuStrip.SuspendLayout();
+            this.contextMenu.SuspendLayout();
+            this.cntxtMenuSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -108,16 +125,18 @@
             0,
             0});
             // 
-            // statusStrip1
+            // statusStrip
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
-            this.lblSymbolCount});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(887, 22);
-            this.statusStrip1.TabIndex = 8;
-            this.statusStrip1.Text = "statusStrip1";
+            this.lblSymbolCount,
+            this.lblCountIdent,
+            this.lebelCountIdent});
+            this.statusStrip.Location = new System.Drawing.Point(0, 490);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(887, 22);
+            this.statusStrip.TabIndex = 8;
+            this.statusStrip.Text = "statusStrip";
             // 
             // toolStripStatusLabel1
             // 
@@ -130,16 +149,16 @@
             this.lblSymbolCount.Name = "lblSymbolCount";
             this.lblSymbolCount.Size = new System.Drawing.Size(0, 17);
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem,
             this.toolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(887, 24);
-            this.menuStrip1.TabIndex = 10;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(887, 24);
+            this.menuStrip.TabIndex = 10;
+            this.menuStrip.Text = "menuStrip";
             // 
             // toolStripMenuItem
             // 
@@ -183,6 +202,7 @@
             this.itemCopy,
             this.itemPaste,
             this.itemDelete,
+            this.toolStripSeparator2,
             this.itemSearch,
             this.itemSelectAll,
             this.itemPasteDateTime});
@@ -243,6 +263,7 @@
             // butSearch
             // 
             this.butSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.butSearch.ContextMenuStrip = this.cntxtMenuSearch;
             this.butSearch.Location = new System.Drawing.Point(650, 24);
             this.butSearch.Name = "butSearch";
             this.butSearch.Size = new System.Drawing.Size(75, 20);
@@ -255,6 +276,7 @@
             this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox.ContextMenuStrip = this.contextMenu;
             this.textBox.Location = new System.Drawing.Point(24, 48);
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(841, 430);
@@ -263,7 +285,6 @@
             // 
             // comboFont
             // 
-            this.comboFont.DisplayMember = "1";
             this.comboFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboFont.FormattingEnabled = true;
             this.comboFont.Items.AddRange(new object[] {
@@ -278,7 +299,7 @@
             "Times New Roman"});
             this.comboFont.Location = new System.Drawing.Point(241, 23);
             this.comboFont.Name = "comboFont";
-            this.comboFont.Size = new System.Drawing.Size(120, 21);
+            this.comboFont.Size = new System.Drawing.Size(116, 21);
             this.comboFont.TabIndex = 14;
             this.comboFont.Tag = "";
             // 
@@ -290,6 +311,96 @@
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 15;
             this.label3.Text = "Шрифт";
+            // 
+            // contextMenu
+            // 
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contMenuCut,
+            this.contMenuCopy,
+            this.contMenuPaste,
+            this.contMenuDelete,
+            this.toolStripSeparator1,
+            this.contMenuSearch,
+            this.contMenuSeleactAll,
+            this.contMenuPasteDateTime});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(149, 164);
+            // 
+            // contMenuCut
+            // 
+            this.contMenuCut.Name = "contMenuCut";
+            this.contMenuCut.Size = new System.Drawing.Size(148, 22);
+            this.contMenuCut.Text = "Вырезать";
+            // 
+            // contMenuCopy
+            // 
+            this.contMenuCopy.Name = "contMenuCopy";
+            this.contMenuCopy.Size = new System.Drawing.Size(148, 22);
+            this.contMenuCopy.Text = "Копировать";
+            // 
+            // contMenuPaste
+            // 
+            this.contMenuPaste.Name = "contMenuPaste";
+            this.contMenuPaste.Size = new System.Drawing.Size(148, 22);
+            this.contMenuPaste.Text = "Вставить";
+            // 
+            // contMenuDelete
+            // 
+            this.contMenuDelete.Name = "contMenuDelete";
+            this.contMenuDelete.Size = new System.Drawing.Size(148, 22);
+            this.contMenuDelete.Text = "Удалить";
+            // 
+            // contMenuSearch
+            // 
+            this.contMenuSearch.Name = "contMenuSearch";
+            this.contMenuSearch.Size = new System.Drawing.Size(148, 22);
+            this.contMenuSearch.Text = "Найти";
+            // 
+            // contMenuSeleactAll
+            // 
+            this.contMenuSeleactAll.Name = "contMenuSeleactAll";
+            this.contMenuSeleactAll.Size = new System.Drawing.Size(148, 22);
+            this.contMenuSeleactAll.Text = "Вделить все";
+            // 
+            // contMenuPasteDateTime
+            // 
+            this.contMenuPasteDateTime.Name = "contMenuPasteDateTime";
+            this.contMenuPasteDateTime.Size = new System.Drawing.Size(148, 22);
+            this.contMenuPasteDateTime.Text = "Вставить дату";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // cntxtMenuSearch
+            // 
+            this.cntxtMenuSearch.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cntxtMenuSearchHide});
+            this.cntxtMenuSearch.Name = "contextMenuStrip1";
+            this.cntxtMenuSearch.Size = new System.Drawing.Size(116, 26);
+            // 
+            // cntxtMenuSearchHide
+            // 
+            this.cntxtMenuSearchHide.Name = "cntxtMenuSearchHide";
+            this.cntxtMenuSearchHide.Size = new System.Drawing.Size(115, 22);
+            this.cntxtMenuSearchHide.Text = "Скрыть";
+            // 
+            // lblCountIdent
+            // 
+            this.lblCountIdent.Name = "lblCountIdent";
+            this.lblCountIdent.Size = new System.Drawing.Size(146, 17);
+            this.lblCountIdent.Text = "Количество совпадений: ";
+            // 
+            // lebelCountIdent
+            // 
+            this.lebelCountIdent.Name = "lebelCountIdent";
+            this.lebelCountIdent.Size = new System.Drawing.Size(0, 17);
             // 
             // MainForm
             // 
@@ -303,19 +414,21 @@
             this.Controls.Add(this.textSearch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filePath);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.numFont);
             this.Controls.Add(this.label2);
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(530, 300);
             this.Name = "MainForm";
             this.Text = "Текстовый редактор";
             ((System.ComponentModel.ISupportInitialize)(this.numFont)).EndInit();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
+            this.contextMenu.ResumeLayout(false);
+            this.cntxtMenuSearch.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,10 +440,10 @@
         private System.Windows.Forms.TextBox filePath;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numFont;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblSymbolCount;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem itemCreateFile;
         private System.Windows.Forms.ToolStripMenuItem itemOpenFile;
@@ -349,6 +462,20 @@
         private System.Windows.Forms.RichTextBox textBox;
         private System.Windows.Forms.ComboBox comboFont;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem contMenuCut;
+        private System.Windows.Forms.ToolStripMenuItem contMenuCopy;
+        private System.Windows.Forms.ToolStripMenuItem contMenuPaste;
+        private System.Windows.Forms.ToolStripMenuItem contMenuDelete;
+        private System.Windows.Forms.ToolStripMenuItem contMenuSearch;
+        private System.Windows.Forms.ToolStripMenuItem contMenuSeleactAll;
+        private System.Windows.Forms.ToolStripMenuItem contMenuPasteDateTime;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ContextMenuStrip cntxtMenuSearch;
+        private System.Windows.Forms.ToolStripMenuItem cntxtMenuSearchHide;
+        private System.Windows.Forms.ToolStripStatusLabel lblCountIdent;
+        private System.Windows.Forms.ToolStripStatusLabel lebelCountIdent;
     }
 }
 

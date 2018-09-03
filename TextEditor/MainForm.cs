@@ -32,6 +32,7 @@ namespace TextEditor
             itemSelectAll.Click += ItemSelectAll_Click;
             textSearch.Visible = false;
             butSearch.Visible = false;
+            lblCountIdent.Visible = false;
             itemSearch.Click += ItemSearch_Click;
             butSearch.Click += ButSearch_Click;
             comboFont.SelectedIndexChanged += numFont_ValueChanged;
@@ -39,10 +40,34 @@ namespace TextEditor
             itemCopy.Click += ItemCopy_Click;
             itemCut.Click += ItemCut_Click;
             itemPaste.Click += ItemPaste_Click;
+            comboFont.SelectedItem = "Arial";
+
+            //context Menu
+            contMenuCut.Click += ItemCut_Click;
+            contMenuCopy.Click += ItemCopy_Click;
+            contMenuPaste.Click += ItemPaste_Click;
+            contMenuDelete.Click += ItemDelete_Click;
+            contMenuSearch.Click += ItemSearch_Click;
+            contMenuSeleactAll.Click += ItemSelectAll_Click;
+            contMenuPasteDateTime.Click += ItemPasteDateTime_Click;
+            cntxtMenuSearchHide.Click += CntxtMenuSearchHide_Click;
+        }
+
+        private void CntxtMenuSearchHide_Click(object sender, EventArgs e)
+        {
+            textSearch.Visible = false;
+            butSearch.Visible = false;
+            itemSearch.Visible = true;
+            contMenuSearch.Visible = true;
+            lblCountIdent.Visible = false;
+            lebelCountIdent.Text = "0";
+            lebelCountIdent.Visible = false;
+            textSearch.Text = "";
+            colorText(0, Content.Length, Color.Black);
         }
 
         #region Вставить Вырезать Копировать Удалить Выделить
- 
+
         private void ItemPaste_Click(object sender, EventArgs e)
         {
             textBox.Paste();
@@ -82,6 +107,8 @@ namespace TextEditor
                         colorText(i, textSearch.Text.Length, Color.Blue);
                     }
                     MessageBox.Show("Количество совпадений: " + numPosition.Count);
+                    lblCountIdent.Visible = true;
+                    lebelCountIdent.Text = numPosition.Count.ToString();
                 }
                 else
                     MessageBox.Show("Совпадений не обнаружено");
@@ -95,6 +122,7 @@ namespace TextEditor
             textSearch.Visible = true;
             butSearch.Visible = true;
             itemSearch.Visible = false;
+            contMenuSearch.Visible = false;
         }
 
         //поиск в тексте
