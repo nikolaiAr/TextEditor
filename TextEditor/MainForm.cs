@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TextEditor
@@ -39,11 +34,42 @@ namespace TextEditor
             butSearch.Visible = false;
             itemSearch.Click += ItemSearch_Click;
             butSearch.Click += ButSearch_Click;
-            comboFont.SelectedIndexChanged += ComdoFont_SelectedIndexChanged;
+            comboFont.SelectedIndexChanged += numFont_ValueChanged;
+            itemDelete.Click += ItemDelete_Click;
+            itemCopy.Click += ItemCopy_Click;
+            itemCut.Click += ItemCut_Click;
+            itemPaste.Click += ItemPaste_Click;
         }
 
-        
+        #region Вставить Вырезать Копировать Удалить Выделить
+ 
+        private void ItemPaste_Click(object sender, EventArgs e)
+        {
+            textBox.Paste();
+        }
 
+        private void ItemCut_Click(object sender, EventArgs e)
+        {
+            textBox.Cut();
+        }
+
+        private void ItemCopy_Click(object sender, EventArgs e)
+        {
+            textBox.Copy();
+        }
+
+        private void ItemDelete_Click(object sender, EventArgs e)
+        {
+            textBox.SelectedText = "";
+        }
+
+        private void ItemSelectAll_Click(object sender, EventArgs e)
+        {
+            textBox.SelectAll();
+        }
+        #endregion
+
+        #region Поиск
         private void ButSearch_Click(object sender, EventArgs e)
         {
             colorText(0, Content.Length, Color.Black);
@@ -71,10 +97,31 @@ namespace TextEditor
             itemSearch.Visible = false;
         }
 
-        private void ItemSelectAll_Click(object sender, EventArgs e)
+        //поиск в тексте
+        public List<int> SearchText(string word, string content)
         {
-            textBox.SelectAll();
+            List<int> listPosition = new List<int>();
+            int curPosition = content.IndexOf(word, 0);
+            while (curPosition != -1)
+            {
+                listPosition.Add(curPosition);
+                curPosition = content.IndexOf(word, curPosition + word.Length);
+            }
+            if (curPosition != -1)
+                listPosition.Add(curPosition);
+            return listPosition;
         }
+
+        //выбор цвета текста
+        private void colorText(int startPosition, int length, Color color)
+        {
+            textBox.SelectionStart = startPosition;
+            textBox.SelectionLength = length;
+            textBox.SelectionColor = color;
+        }
+        #endregion
+
+        #region Проброс событий
 
         private void ItemPasteDateTime_Click(object sender, EventArgs e)
         {
@@ -82,7 +129,6 @@ namespace TextEditor
                 PasteDate(this, EventArgs.Empty);
         }
 
-        #region Проброс событий
         private void ItemSelectFile_Click(object sender, EventArgs e)
         {
             SelectFile();
@@ -162,11 +208,6 @@ namespace TextEditor
             textBox.Font = new Font((string)comboFont.SelectedItem, (float)numFont.Value);
         }
 
-        //выбор шрифта
-        private void ComdoFont_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textBox.Font = new Font((string)comboFont.SelectedItem, (float)numFont.Value);
-        }
         //переопределение кнопки закрытия
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -184,27 +225,6 @@ namespace TextEditor
             }
         }
 
-        //поиск в тексте
-        public List<int> SearchText(string word, string content)
-        {
-            List<int> listPosition = new List<int>();
-            int curPosition = content.IndexOf(word, 0);
-            while (curPosition != -1)
-            {
-                listPosition.Add(curPosition);
-                curPosition = content.IndexOf(word, curPosition + word.Length);
-            }
-            if (curPosition != -1)
-                listPosition.Add(curPosition);
-            return listPosition;
-        }
-
-        //выбор цвета текста
-        private void colorText(int startPosition, int length, Color color)
-        {
-            textBox.SelectionStart = startPosition;
-            textBox.SelectionLength = length;
-            textBox.SelectionColor = color;
-        }
+        
     }
 }

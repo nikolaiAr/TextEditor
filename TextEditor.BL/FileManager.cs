@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.IO;
 using System.Text;
 
@@ -26,52 +20,62 @@ namespace TextEditor.BL
     {
         private readonly Encoding _defEnc = Encoding.GetEncoding(1251);
         //перегрузки для передачи кодировки
-        
-        public void CreateContent(string filePath, string content) //создать
+
+        //создать
+        public void CreateContent(string filePath, string content) 
         {
             CreateContent(filePath, content, _defEnc);
         }
-        
-        public void CreateContent(string filePath, string content, Encoding encoding) //создать
+
+        //создать
+        public void CreateContent(string filePath, string content, Encoding encoding) 
         {
             File.WriteAllText(filePath, content);
             //SaveContent(content, filePath);
         }
 
-        public string GetContent(string filePath) //открыть
+        //открыть
+        public string GetContent(string filePath) 
         {
 
             return GetContent(filePath, _defEnc);
         }
 
-        public string GetContent(string filePath, Encoding encoding) //открыть
+        //открыть
+        public string GetContent(string filePath, Encoding encoding) 
         {
             string content = File.ReadAllText(filePath, encoding);
             return content;
         }
-
-        public void SaveContent(string content, string filePath)//сохранить
+        
+        //сохранить
+        public void SaveContent(string content, string filePath)
         {
             SaveContent(content, filePath, _defEnc);
         }
-        public void SaveContent(string content, string filePath, Encoding encoding) //сохранить
+
+        //сохранить
+        public void SaveContent(string content, string filePath, Encoding encoding) 
         {
             File.WriteAllText(filePath, content, encoding);
         }
 
-        public bool IsExist(string filePath)  //проверка на существование
+        //проверка на существование
+        public bool IsExist(string filePath)  
         {
             bool isExist = File.Exists(filePath);
             return isExist;
         }
 
-        public int GetSymbolCount(string content) //подсчитать символы
+        //подсчитать символы
+        public int GetSymbolCount(string content) 
         {
             int count = content.Length;
             return count;
         }
 
-        public string PasteDateTime ()   //вставить текущую дату и время
+        //вставить текущую дату и время
+        public string PasteDateTime ()   
         {
             DateTime dateTime = DateTime.Now;
             return dateTime.ToString();
