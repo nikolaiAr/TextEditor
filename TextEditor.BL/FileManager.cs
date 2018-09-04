@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -15,6 +16,7 @@ namespace TextEditor.BL
         bool IsExist(string filePath);
         int GetSymbolCount(string content);
         string PasteDateTime();
+        List<int> SearchText(string word, string content);
     }
     public class FileManager:IFileManager
     {
@@ -70,7 +72,8 @@ namespace TextEditor.BL
         //подсчитать символы
         public int GetSymbolCount(string content) 
         {
-            int count = content.Length;
+            //content = content.Replace(" ", "");
+            int count = content.Replace("\n", "").Replace(" ", "").Length;
             return count;
         }
 
@@ -81,5 +84,20 @@ namespace TextEditor.BL
             return dateTime.ToString();
         }
 
+
+        //поиск позиций в тексте совпадений с искомым
+        public List<int> SearchText(string word, string content)
+        {
+            List<int> listPosition = new List<int>();
+            int curPosition = content.IndexOf(word, 0);
+            while (curPosition != -1)
+            {
+                listPosition.Add(curPosition);
+                curPosition = content.IndexOf(word, curPosition + word.Length);
+            }
+            if (curPosition != -1)
+                listPosition.Add(curPosition);
+            return listPosition;
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using TextEditor.BL;
 
 namespace TextEditor
@@ -23,11 +25,43 @@ namespace TextEditor
             _view.FileSaveClick += _view_FileSaveClick;
             _view.FileCreateClick += _view_FileCreateClick;
             _view.PasteDate += _view_PasteDate;
+            _view.SearchWord += _view_SearchWord;
+        }
+
+        private void _view_SearchWord(object sender, EventArgs e)
+        {
+            try
+            {
+                _view.ColorText(0, _view.Content.Length, Color.Black);
+                List<int> numPosition = _manager.SearchText(_view.WordSearch, _view.Content);
+                if (numPosition.Count != 0)
+                {
+                    foreach (int i in numPosition)
+                    {
+                        _view.ColorText(i, _view.WordSearch.Length, Color.Blue);
+                    }
+                    _messageService.ShowMessage("Количество совпадений: " + numPosition.Count);
+                }
+                else
+                    _messageService.ShowMessage("Совпадений не обнаружено");
+                _view.SetSearchCount(numPosition.Count);
+            }
+            catch (Exception ex)
+            {
+                _messageService.ShowError(ex.Message);
+            }
         }
 
         private void _view_PasteDate(object sender, EventArgs e)
         {
-            _view.Content += "  " + _manager.PasteDateTime();
+            try
+            {
+                _view.Content += "  " + _manager.PasteDateTime();
+            }
+            catch (Exception ex)
+            {
+                _messageService.ShowError(ex.Message);
+            }
         }
 
         private void _view_FileCreateClick(object sender, EventArgs e)

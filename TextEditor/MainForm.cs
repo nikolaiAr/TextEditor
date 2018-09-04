@@ -9,12 +9,16 @@ namespace TextEditor
     {
         string FilePath { get; }
         string Content { get; set; }
+        string WordSearch { get; }
         void SetSymbolCount(int count);
+        void SetSearchCount(int count);
+        void ColorText(int startPosition, int length, Color color);
         event EventHandler FileOpenClick;
         event EventHandler FileSaveClick;
         event EventHandler FileCreateClick;
         event EventHandler ContentChanged;
         event EventHandler PasteDate;
+        event EventHandler SearchWord;
 
     }
     public partial class MainForm : Form, IMainForm
@@ -53,19 +57,6 @@ namespace TextEditor
             cntxtMenuSearchHide.Click += CntxtMenuSearchHide_Click;
         }
 
-        private void CntxtMenuSearchHide_Click(object sender, EventArgs e)
-        {
-            textSearch.Visible = false;
-            butSearch.Visible = false;
-            itemSearch.Visible = true;
-            contMenuSearch.Visible = true;
-            lblCountIdent.Visible = false;
-            lebelCountIdent.Text = "0";
-            lebelCountIdent.Visible = false;
-            textSearch.Text = "";
-            colorText(0, Content.Length, Color.Black);
-        }
-
         #region Вставить Вырезать Копировать Удалить Выделить
 
         private void ItemPaste_Click(object sender, EventArgs e)
@@ -90,33 +81,38 @@ namespace TextEditor
 
         private void ItemSelectAll_Click(object sender, EventArgs e)
         {
+            textBox.Focus();
             textBox.SelectAll();
         }
         #endregion
 
         #region Поиск
-        private void ButSearch_Click(object sender, EventArgs e)
+
+        //скрытие элементов поиска
+        private void CntxtMenuSearchHide_Click(object sender, EventArgs e)
         {
-            colorText(0, Content.Length, Color.Black);
-             {
-                 List<int> numPosition = SearchText(textSearch.Text, textBox.Text);
-                if (numPosition.Count != 0)
-                {
-                    foreach (int i in numPosition)
-                    {
-                        colorText(i, textSearch.Text.Length, Color.Blue);
-                    }
-                    MessageBox.Show("Количество совпадений: " + numPosition.Count);
-                    lblCountIdent.Visible = true;
-                    lebelCountIdent.Text = numPosition.Count.ToString();
-                }
-                else
-                    MessageBox.Show("Совпадений не обнаружено");
-                textBox.Select(Content.Length, 0);
-                textBox.SelectionColor = Color.Black;
-            }
+            textSearch.Visible = false;
+            butSearch.Visible = false;
+            itemSearch.Visible = true;
+            contMenuSearch.Visible = true;
+            lblCountIdent.Visible = false;
+            lebelCountIdent.Text = "0";
+            lebelCountIdent.Visible = false;
+            textSearch.Text = "";
+            ColorText(0, Content.Length, Color.Black);
+            textBox.SelectionStart = Content.Length;
         }
 
+        //проброс события поиска
+        private void ButSearch_Click(object sender, EventArgs e)
+        {
+            SearchWord?.Invoke(this, EventArgs.Empty);
+            ColorText(Content.Length, 0, Color.Black);
+            //textBox.Select(Content.Length, 0);
+            //textBox.SelectionColor = Color.Black;
+        }
+
+        //включение элементов поиска
         private void ItemSearch_Click(object sender, EventArgs e)
         {
             textSearch.Visible = true;
@@ -125,23 +121,8 @@ namespace TextEditor
             contMenuSearch.Visible = false;
         }
 
-        //поиск в тексте
-        public List<int> SearchText(string word, string content)
-        {
-            List<int> listPosition = new List<int>();
-            int curPosition = content.IndexOf(word, 0);
-            while (curPosition != -1)
-            {
-                listPosition.Add(curPosition);
-                curPosition = content.IndexOf(word, curPosition + word.Length);
-            }
-            if (curPosition != -1)
-                listPosition.Add(curPosition);
-            return listPosition;
-        }
-
-        //выбор цвета текста
-        private void colorText(int startPosition, int length, Color color)
+        //подсвечивание цветом текста
+        public void ColorText(int startPosition, int length, Color color)
         {
             textBox.SelectionStart = startPosition;
             textBox.SelectionLength = length;
@@ -153,8 +134,7 @@ namespace TextEditor
 
         private void ItemPasteDateTime_Click(object sender, EventArgs e)
         {
-            if (PasteDate != null)
-                PasteDate(this, EventArgs.Empty);
+            PasteDate?.Invoke(this, EventArgs.Empty);
         }
 
         private void ItemSelectFile_Click(object sender, EventArgs e)
@@ -164,14 +144,12 @@ namespace TextEditor
 
         private void ItemCreateFile_Click(object sender, EventArgs e)
         {
-            if (FileCreateClick != null)
-                FileCreateClick(this, EventArgs.Empty);
+            FileCreateClick?.Invoke(this, EventArgs.Empty);
         }
 
         private void ItemSaveFile_Click(object sender, EventArgs e)
         {
-            if (FileSaveClick != null)
-                FileSaveClick(this, EventArgs.Empty);
+            FileSaveClick?.Invoke(this, EventArgs.Empty);
         }
 
         private void ItemOpenFile_Click(object sender, EventArgs e)
@@ -180,8 +158,7 @@ namespace TextEditor
             {
                 SelectFile();
             }
-            if (FileOpenClick != null)
-                FileOpenClick(this, EventArgs.Empty);
+            FileOpenClick?.Invoke(this, EventArgs.Empty);
         }
 
         private void TextBox_TextChanged(object sender, EventArgs e)
@@ -209,11 +186,24 @@ namespace TextEditor
             lblSymbolCount.Text = count.ToString();
         }
 
+        public void SetSearchCount(int count)
+        {
+            lblCountIdent.Visible = true;
+            lebelCountIdent.Visible = true;
+            lebelCountIdent.Text = count.ToString();
+        }
+
+        public string WordSearch
+        {
+            get { return textSearch.Text; }
+        }
+
         public event EventHandler FileOpenClick;
         public event EventHandler FileSaveClick;
         public event EventHandler FileCreateClick;
         public event EventHandler ContentChanged;
         public event EventHandler PasteDate;
+        public event EventHandler SearchWord;
         #endregion
 
         //обработчик выбора файла
