@@ -72,7 +72,6 @@ namespace TextEditor.BL
         //подсчитать символы
         public int GetSymbolCount(string content) 
         {
-            //content = content.Replace(" ", "");
             int count = content.Replace("\n", "").Replace(" ", "").Length;
             return count;
         }
