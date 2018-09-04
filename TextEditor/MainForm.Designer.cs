@@ -37,7 +37,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblSymbolCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.itemCreateFile = new System.Windows.Forms.ToolStripMenuItem();
             this.itemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.itemSelectFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +69,7 @@
             this.cntxtMenuSearchHide = new System.Windows.Forms.ToolStripMenuItem();
             this.lblCountIdent = new System.Windows.Forms.ToolStripStatusLabel();
             this.lebelCountIdent = new System.Windows.Forms.ToolStripStatusLabel();
+            this.itemSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numFont)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -152,7 +153,7 @@
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem,
+            this.toolMenuStrip,
             this.toolStripMenuItem1});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -160,39 +161,40 @@
             this.menuStrip.TabIndex = 10;
             this.menuStrip.Text = "menuStrip";
             // 
-            // toolStripMenuItem
+            // toolMenuStrip
             // 
-            this.toolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.itemCreateFile,
             this.itemOpenFile,
             this.itemSelectFile,
-            this.itemSaveFile});
-            this.toolStripMenuItem.Name = "toolStripMenuItem";
-            this.toolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.toolStripMenuItem.Text = "Файл";
+            this.itemSaveFile,
+            this.itemSaveAs});
+            this.toolMenuStrip.Name = "toolMenuStrip";
+            this.toolMenuStrip.Size = new System.Drawing.Size(48, 20);
+            this.toolMenuStrip.Text = "Файл";
             // 
             // itemCreateFile
             // 
             this.itemCreateFile.Name = "itemCreateFile";
-            this.itemCreateFile.Size = new System.Drawing.Size(132, 22);
+            this.itemCreateFile.Size = new System.Drawing.Size(180, 22);
             this.itemCreateFile.Text = "Создать";
             // 
             // itemOpenFile
             // 
             this.itemOpenFile.Name = "itemOpenFile";
-            this.itemOpenFile.Size = new System.Drawing.Size(132, 22);
+            this.itemOpenFile.Size = new System.Drawing.Size(180, 22);
             this.itemOpenFile.Text = "Открыть";
             // 
             // itemSelectFile
             // 
             this.itemSelectFile.Name = "itemSelectFile";
-            this.itemSelectFile.Size = new System.Drawing.Size(132, 22);
+            this.itemSelectFile.Size = new System.Drawing.Size(180, 22);
             this.itemSelectFile.Text = "Выбрать";
             // 
             // itemSaveFile
             // 
             this.itemSaveFile.Name = "itemSaveFile";
-            this.itemSaveFile.Size = new System.Drawing.Size(132, 22);
+            this.itemSaveFile.Size = new System.Drawing.Size(180, 22);
             this.itemSaveFile.Text = "Сохранить";
             // 
             // toolStripMenuItem1
@@ -402,6 +404,12 @@
             this.lebelCountIdent.Name = "lebelCountIdent";
             this.lebelCountIdent.Size = new System.Drawing.Size(0, 17);
             // 
+            // itemSaveAs
+            // 
+            this.itemSaveAs.Name = "itemSaveAs";
+            this.itemSaveAs.Size = new System.Drawing.Size(180, 22);
+            this.itemSaveAs.Text = "Сохранить как";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -444,7 +452,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lblSymbolCount;
         private System.Windows.Forms.MenuStrip menuStrip;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem itemCreateFile;
         private System.Windows.Forms.ToolStripMenuItem itemOpenFile;
         private System.Windows.Forms.ToolStripMenuItem itemSaveFile;
@@ -476,6 +484,7 @@
         private System.Windows.Forms.ToolStripMenuItem cntxtMenuSearchHide;
         private System.Windows.Forms.ToolStripStatusLabel lblCountIdent;
         private System.Windows.Forms.ToolStripStatusLabel lebelCountIdent;
+        private System.Windows.Forms.ToolStripMenuItem itemSaveAs;
     }
 }
 

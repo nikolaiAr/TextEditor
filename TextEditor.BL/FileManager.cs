@@ -83,7 +83,6 @@ namespace TextEditor.BL
             return dateTime.ToString();
         }
 
-
         //поиск позиций в тексте совпадений с искомым
         public List<int> SearchText(string word, string content)
         {

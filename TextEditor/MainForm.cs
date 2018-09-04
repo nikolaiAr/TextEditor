@@ -45,6 +45,7 @@ namespace TextEditor
             itemCut.Click += ItemCut_Click;
             itemPaste.Click += ItemPaste_Click;
             comboFont.SelectedItem = "Arial";
+            itemSaveAs.Click += ItemSaveAs_Click;
 
             //context Menu
             contMenuCut.Click += ItemCut_Click;
@@ -56,6 +57,7 @@ namespace TextEditor
             contMenuPasteDateTime.Click += ItemPasteDateTime_Click;
             cntxtMenuSearchHide.Click += CntxtMenuSearchHide_Click;
         }
+
 
         #region Вставить Вырезать Копировать Удалить Выделить
 
@@ -108,8 +110,6 @@ namespace TextEditor
         {
             SearchWord?.Invoke(this, EventArgs.Empty);
             ColorText(Content.Length, 0, Color.Black);
-            //textBox.Select(Content.Length, 0);
-            //textBox.SelectionColor = Color.Black;
         }
 
         //включение элементов поиска
@@ -147,6 +147,11 @@ namespace TextEditor
             FileCreateClick?.Invoke(this, EventArgs.Empty);
         }
 
+        private void ItemSaveAs_Click(object sender, EventArgs e)
+        {
+            SaveFileAs();
+        }
+
         private void ItemSaveFile_Click(object sender, EventArgs e)
         {
             FileSaveClick?.Invoke(this, EventArgs.Empty);
@@ -154,11 +159,14 @@ namespace TextEditor
 
         private void ItemOpenFile_Click(object sender, EventArgs e)
         {
-            if (""==FilePath)
+            if ("" == FilePath)
             {
                 SelectFile();
             }
-            FileOpenClick?.Invoke(this, EventArgs.Empty);
+            else
+            {
+                FileOpenClick?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private void TextBox_TextChanged(object sender, EventArgs e)
@@ -215,8 +223,20 @@ namespace TextEditor
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 filePath.Text = dlg.FileName;
-                if (FileOpenClick != null)
-                    FileOpenClick(this, EventArgs.Empty);
+                FileOpenClick?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        //обработчик сохранения файла
+        private void SaveFileAs()
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Текстовые файлы|*.txt|Все файлы|*.*";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                filePath.Text = dlg.FileName;
+                FileCreateClick?.Invoke(this, EventArgs.Empty);
             }
         }
 

@@ -71,7 +71,6 @@ namespace TextEditor
                 string filePath = _view.FilePath;
                 if ("" != filePath)
                 {
-                    //string content = _view.Content;
                     _manager.CreateContent( filePath,_view.Content);
                     _messageService.ShowMessage("Создан новый файл");
                 }
